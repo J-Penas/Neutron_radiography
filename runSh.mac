@@ -1,0 +1,23 @@
+#
+# Macro file for "Hadr04.cc"
+#
+# neutron 2 MeV;
+#
+/control/verbose 1
+/run/verbose 1
+#
+/testhadr/det/setMat polyethylene
+/testhadr/det/setSize 10 cm
+#
+#/testhadr/phys/thermalScattering false
+#
+/run/initialize
+#
+#/process/list
+#
+/gun/particle neutron
+/gun/energy 2 MeV
+#
+#
+#/run/printProgress 200
+/run/beamOn 10000

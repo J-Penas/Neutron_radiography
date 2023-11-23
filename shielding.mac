@@ -1,0 +1,49 @@
+
+/control/verbose 2
+/run/verbose 2
+#/tracking/verbose 2
+#
+/testhadr/phys/thermalScattering false
+/testhadr/det/setMat polyethylene 
+/testhadr/det/setSize 20 cm
+#
+/run/initialize
+#
+/gun/particle neutron
+/gun/energy 2 MeV
+#
+/control/execute vis.mac
+#
+/score/create/boxMesh meshF
+/score/mesh/boxSize 0.1 50 50 cm
+/score/mesh/translate/xyz 45 0 0 cm
+/score/mesh/nBin 100 100 100
+/score/quantity/flatSurfaceFlux sflux
+/score/filter/particle neutronF neutron
+/score/close
+#
+/score/create/boxMesh meshN
+/score/mesh/boxSize 0.1 50 50 cm
+/score/mesh/translate/xyz 45 0 0 cm
+/score/mesh/nBin 100 100 100
+/score/quantity/nOfTrack track
+/score/filter/particle neutronN neutron
+/score/close
+#
+/score/create/boxMesh meshE
+/score/mesh/boxSize 0.1 50 50 cm
+/score/mesh/translate/xyz 45 0 0 cm
+/score/mesh/nBin 50 50 50
+/score/quantity/nOfTrack e0
+/score/filter/particleWithKineticEnergy r0 0 0.001 MeV neutron
+/score/quantity/nOfTrack e05
+/score/filter/particleWithKineticEnergy r05 0.001 0.5 MeV neutron
+/score/quantity/nOfTrack e1
+/score/filter/particleWithKineticEnergy r1 0.5 1 MeV neutron
+/score/quantity/nOfTrack e2
+/score/filter/particleWithKineticEnergy r2 1 1.5 MeV neutron
+/score/quantity/nOfTrack e3
+/score/filter/particleWithKineticEnergy r3 1.5 2 MeV neutron
+/score/close
+#
+#/run/beamOn 10000
